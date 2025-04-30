@@ -1,4 +1,8 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DBSsqlProyectoMVC_Grupo2>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBSsqlProyectoMVC_Grupo2") ?? throw new InvalidOperationException("Connection string 'DBSsqlProyectoMVC_Grupo2' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
