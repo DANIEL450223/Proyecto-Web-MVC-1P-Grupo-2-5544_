@@ -4,44 +4,58 @@
     ViewData["Title"] = "Clientes";
 }
 
-<h1>Clientes</h1>
+<div class="container">
+    <h1 class="text-center my-4">Clientes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nombreCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.telefonoCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.correoCliente)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombreCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefonoCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.correoCliente)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.clienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.clienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.clienteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="text-right mb-3">
+        <a class="btn btn-primary" asp-action="Create">Crear Nuevo</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.nombreCliente)</th>
+                <th>@Html.DisplayNameFor(model => model.telefonoCliente)</th>
+                <th>@Html.DisplayNameFor(model => model.correoCliente)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.nombreCliente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.telefonoCliente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.correoCliente)</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.clienteId">Editar</a>
+                        <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.clienteId">Detalles</a>
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.clienteId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .btn {
+        margin-right: 5px;
+    }
+</style>

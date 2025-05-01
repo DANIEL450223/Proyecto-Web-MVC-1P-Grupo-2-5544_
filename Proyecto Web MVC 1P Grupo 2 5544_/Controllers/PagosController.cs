@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Web_MVC_1P_Grupo_2_5544_.Models;
 
@@ -21,8 +18,8 @@ namespace Proyecto_Web_MVC_1P_Grupo_2_5544_.Controllers
         // GET: Pagos
         public async Task<IActionResult> Index()
         {
-            var dBSsqlProyectoMVC_Grupo2 = _context.Pago.Include(p => p.Cliente).Include(p => p.Vehiculo);
-            return View(await dBSsqlProyectoMVC_Grupo2.ToListAsync());
+            var pagos = _context.Pago.Include(p => p.Cliente).Include(p => p.Vehiculo);
+            return View(await pagos.ToListAsync());
         }
 
         // GET: Pagos/Details/5
@@ -43,127 +40,6 @@ namespace Proyecto_Web_MVC_1P_Grupo_2_5544_.Controllers
             }
 
             return View(pago);
-        }
-
-        // GET: Pagos/Create
-        public IActionResult Create()
-        {
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "clienteId");
-            ViewData["vehiculoId"] = new SelectList(_context.Set<Vehiculo>(), "vehiculoId", "vehiculoId");
-            return View();
-        }
-
-        // POST: Pagos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("pagoId,clienteId,vehiculoId,fechaPago,montoPagado")] Pago pago)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(pago);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "clienteId", pago.clienteId);
-            ViewData["vehiculoId"] = new SelectList(_context.Set<Vehiculo>(), "vehiculoId", "vehiculoId", pago.vehiculoId);
-            return View(pago);
-        }
-
-        // GET: Pagos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pago = await _context.Pago.FindAsync(id);
-            if (pago == null)
-            {
-                return NotFound();
-            }
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "clienteId", pago.clienteId);
-            ViewData["vehiculoId"] = new SelectList(_context.Set<Vehiculo>(), "vehiculoId", "vehiculoId", pago.vehiculoId);
-            return View(pago);
-        }
-
-        // POST: Pagos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("pagoId,clienteId,vehiculoId,fechaPago,montoPagado")] Pago pago)
-        {
-            if (id != pago.pagoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(pago);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PagoExists(pago.pagoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["clienteId"] = new SelectList(_context.Cliente, "clienteId", "clienteId", pago.clienteId);
-            ViewData["vehiculoId"] = new SelectList(_context.Set<Vehiculo>(), "vehiculoId", "vehiculoId", pago.vehiculoId);
-            return View(pago);
-        }
-
-        // GET: Pagos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var pago = await _context.Pago
-                .Include(p => p.Cliente)
-                .Include(p => p.Vehiculo)
-                .FirstOrDefaultAsync(m => m.pagoId == id);
-            if (pago == null)
-            {
-                return NotFound();
-            }
-
-            return View(pago);
-        }
-
-        // POST: Pagos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var pago = await _context.Pago.FindAsync(id);
-            if (pago != null)
-            {
-                _context.Pago.Remove(pago);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool PagoExists(int id)
-        {
-            return _context.Pago.Any(e => e.pagoId == id);
         }
     }
 }

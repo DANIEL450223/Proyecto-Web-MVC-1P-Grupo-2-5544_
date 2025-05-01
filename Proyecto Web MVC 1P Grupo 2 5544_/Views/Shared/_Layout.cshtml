@@ -3,16 +3,76 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] -Parqueo-UDLA_</title>
+    <title>@ViewData["Title"] - U-PARKING</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proyecto_Web_MVC_1P_Grupo_2_5544_.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Navbar personalizado */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6) !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-item .btn {
+            color: white;
+            background: transparent;
+            border: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+            .navbar-nav .nav-item .btn:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                transform: scale(1.05);
+            }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
+
+            .footer a {
+                color: #cccccc;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Parqueo UDLA_</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">U-PARKING</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,39 +80,49 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item me-2">
-                            <a class="btn btn-info" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="btn" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-info" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                            <a class="btn" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-info" asp-area="" asp-controller="Vehiculos" asp-action="Index">Vehiculos</a>
+                            <a class="btn" asp-area="" asp-controller="Vehiculos" asp-action="Index">Vehículos</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-info" asp-area="" asp-controller="Registros" asp-action="Index">Registros</a>
+                            <a class="btn" asp-area="" asp-controller="Registros" asp-action="Index">Registros</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="btn btn-info" asp-area="" asp-controller="Espacios" asp-action="Index">Espacios</a>
+                            <a class="btn" asp-area="" asp-controller="Espacios" asp-action="Index">Espacios</a>
                         </li>
-                        <li class="nav-item me-2    ">
-                            <a class="btn btn-info" asp-area="" asp-controller="Pagos" asp-action="Index">Pagos</a>
+                        <li class="nav-item me-2">
+                            <a class="btn" asp-area="" asp-controller="Pagos" asp-action="Index">Pagos</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; 2025 - Proyecto_Web_MVC_1P_Grupo_2_5544_ - <a asp-area="" asp-controller="Home">Grupo_2</a>
+            &copy; 2025 - Proyecto_Web_MVC_1P_Grupo_2_5544_ -
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: black;">Grupo_2</a>
         </div>
     </footer>
+
+    <style>
+        .footer {
+            color: black;
+        }
+    </style>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

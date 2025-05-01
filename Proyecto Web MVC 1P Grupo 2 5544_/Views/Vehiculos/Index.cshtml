@@ -1,71 +1,69 @@
 ﻿@model IEnumerable<Proyecto_Web_MVC_1P_Grupo_2_5544_.Models.Vehiculo>
 
 @{
-    ViewData["Title"] = "Vehiculos";
+    ViewData["Title"] = "Vehículos";
 }
 
-<h1>Vehiculos</h1>
+<div class="container">
+    <h1 class="text-center my-4">Vehículos</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.placaVehiculo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.modeloVehiculo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.marcaVehiculo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.colorVehiculo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaIngreso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fechaSalida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.placaVehiculo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.modeloVehiculo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.marcaVehiculo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.colorVehiculo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechaSalida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.clienteId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.vehiculoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.vehiculoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.vehiculoId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="text-right mb-3">
+        <a class="btn btn-primary" asp-action="Create">Crear Nuevo</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.placaVehiculo)</th>
+                <th>@Html.DisplayNameFor(model => model.modeloVehiculo)</th>
+                <th>@Html.DisplayNameFor(model => model.marcaVehiculo)</th>
+                <th>@Html.DisplayNameFor(model => model.colorVehiculo)</th>
+                <th>@Html.DisplayNameFor(model => model.fechaIngreso)</th>
+                <th>@Html.DisplayNameFor(model => model.fechaSalida)</th>
+                <th>@Html.DisplayNameFor(model => model.Cliente)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.placaVehiculo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.modeloVehiculo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.marcaVehiculo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.colorVehiculo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.fechaIngreso)</td>
+                    <td>@Html.DisplayFor(modelItem => item.fechaSalida)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cliente.clienteId)</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.vehiculoId">Editar</a>
+                        <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.vehiculoId">Detalles</a>
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.vehiculoId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .btn {
+        margin-right: 5px;
+    }
+</style>
