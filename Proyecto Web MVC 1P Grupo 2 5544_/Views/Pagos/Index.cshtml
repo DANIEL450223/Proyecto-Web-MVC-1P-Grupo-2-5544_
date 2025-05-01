@@ -30,7 +30,6 @@
                     <td>@Html.DisplayFor(modelItem => item.fechaPago)</td>
                     <td>@Html.DisplayFor(modelItem => item.montoPagado)</td>
                     <td>
-                        <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.pagoId">Editar</a>
                         <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.pagoId">Detalles</a>
                         <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.pagoId">Eliminar</a>
                     </td>
